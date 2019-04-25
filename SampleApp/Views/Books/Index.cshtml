@@ -1,0 +1,9 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1>My Books</h1>
+    @foreach (var x in ViewBag.Books)
+        {<div>@x.Name</div>}
+</div>
