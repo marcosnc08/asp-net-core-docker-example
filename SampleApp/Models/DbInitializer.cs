@@ -8,8 +8,10 @@ namespace SampleApp.Models
 
             var books = new Book[]
             {
-                new Book{ Id = "1", Name = "The Fellowship of the Ring (The Lord of the Rings, #1)" },
-                new Book{ Id = "2", Name = "The Two Towers" },
+                new Book{ Name = "The Fellowship of the Ring (The Lord of the Rings, #1)" },
+                new Book{ Name = "The Two Towers" },
+                new Book{ Name = "Shout" },
+                new Book{ Name = "Frankly in Love" },
             };
             
             context.Books.AddRange(books);

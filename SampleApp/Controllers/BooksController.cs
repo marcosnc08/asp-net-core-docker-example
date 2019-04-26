@@ -23,6 +23,43 @@ namespace SampleApp.Controllers
             return View();
         }
 
+        public IActionResult AddOrEdit(string id)
+        {   
+            if(string.IsNullOrEmpty(id)) {
+                return View(new Book());
+            }
+            
+            return View(_context.Books.Find(id));
+        }
+
+        [HttpPost]
+        public IActionResult AddOrEdit([Bind("Id, Name")] Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                if(string.IsNullOrEmpty(book.Id)) {
+                    _context.Books.Add(book);
+                } else {
+                    _context.Books.Update(book);
+                }
+
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(book);
+        }
+
+        public IActionResult Delete(string id)
+        {
+            var book = _context.Books.First(b => b.Id == id);
+
+            _context.Books.Remove(book);
+            _context.SaveChanges();
+            
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Privacy()
         {
             return View();
